@@ -14,10 +14,10 @@ class AdminRedirect
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle(Request $request, Closure $next)
     {
-        if(Auth::guard('admin')->check()){
-            return redirect()->route('admin.dashboard');
+        if (Auth::guard('admin')->check()) {
+            return redirect()->route('admin.dashboard'); // Redirect ke dashboard jika sudah login
         }
         return $next($request);
     }

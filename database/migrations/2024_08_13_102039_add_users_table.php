@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('users', function($table) {
-            $table->enum('role',['customer','admin'])->default('customer');
-        });
+        // Cek jika kolom 'role' belum ada
+        if (!Schema::hasColumn('users', 'role')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->enum('role', ['customer', 'admin'])->default('customer');
+            });
+        }
     }
 
     /**
@@ -21,8 +24,11 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('users', function($table) {
-            $table->dropColumn('role');
-        });
+        // Cek jika kolom 'role' ada dan hapus
+        if (Schema::hasColumn('users', 'role')) {
+            Schema::table('users', function (Blueprint $table) {
+                $table->dropColumn('role');
+            });
+        }
     }
 };

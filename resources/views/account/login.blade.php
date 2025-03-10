@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Laravel 11 Multi Auth</title>
+        <title>SIMAWA - Sistem Informasi Mahasiswa</title>
         <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.2/dist/css/bootstrap.min.css">
     </head>
     <body class="bg-light">
@@ -29,24 +29,28 @@
                                 <form action="{{ route('account.authenticate') }}" method="post">
                                     @csrf
                                     <div class="row gy-3 overflow-hidden">
+                                        <!-- NPM input -->
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
-                                                <input value="{{ old('email') }}" type="text" class="form-control @error('email') is-invalid @enderror" name="email" id="email" placeholder="name@example.com">
-                                                <label for="email" class="form-label">Email</label>
-                                                @error('email')
+                                                <input value="{{ old('npm') }}" type="text" class="form-control @error('npm') is-invalid @enderror" name="npm" id="npm" placeholder="NPM" required>
+                                                <label for="npm" class="form-label">NPM</label>
+                                                @error('npm')
                                                    <p class="invalid-feedback">{{ $message }}</p> 
                                                 @enderror
                                             </div>
                                         </div>
+                                  
+                                        <!-- Password input -->
                                         <div class="col-12">
                                             <div class="form-floating mb-3">
-                                                <input  type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="" placeholder="Password">
+                                                <input type="password" class="form-control @error('password') is-invalid @enderror" name="password" id="password" value="" placeholder="Password" required>
                                                 <label for="password" class="form-label">Password</label>
                                                 @error('password')
                                                     <p class="invalid-feedback">{{ $message }}</p>
                                                 @enderror
                                             </div>
                                         </div>
+                                  
                                         <div class="col-12">
                                             <div class="d-grid">
                                                 <button class="btn bsb-btn-xl btn-primary py-3" type="submit">Log in now</button>
@@ -54,14 +58,16 @@
                                         </div>
                                     </div>
                                 </form>
+                                  
                                 <div class="row">
                                     <div class="col-12">
                                         <hr class="mt-5 mb-4 border-secondary-subtle">
                                         <div class="d-flex gap-2 gap-md-4 flex-column flex-md-row justify-content-center">
-                                            <a href="{{ route('account.register') }}" class="link-secondary text-decoration-none">Create new account</a>
+                                            <a href="{{ route('account.register.process') }}" class="link-secondary text-decoration-none">Create new account</a>
+                                            <a href="{{ route('password.request') }}" class="link-secondary text-decoration-none">Forgot your password?</a> <!-- Link Lupa Password -->
                                         </div>
                                     </div>
-                                </div>
+                                </div>                                                              
                             </div>
                         </div>
                     </div>
